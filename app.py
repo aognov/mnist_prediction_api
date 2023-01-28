@@ -42,7 +42,7 @@ def get_classify():
         test_image = test_image.reshape(-1, 28, 28)
         class_names = ['T-shirt/top',' Trouser', 'Pullover', ' Dress', ' Coat', ' Sandal', ' Shirt', ' Sneaker', ' Bag', 'Ankle boot']
 
-        model = tf.keras.models.load_model('src/mnist_model.h5')
+        model = tf.keras.models.load_model('mnist_model.h5')
         predictions = model.predict( test_image)
         predicted_label = np.argmax(predictions)
         true_label = test_label
