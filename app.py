@@ -37,7 +37,6 @@ def get_classify():
         pixels_array = np.array([pixels])
         
         test_image = pd.DataFrame(pixels_array, columns=np.arange(784))
-        
         test_image = np.float32(test_image/255.0)
         test_image = test_image.reshape(-1, 28, 28)
         class_names = ['T-shirt/top',' Trouser', 'Pullover', ' Dress', ' Coat', ' Sandal', ' Shirt', ' Sneaker', ' Bag', 'Ankle boot']
@@ -45,9 +44,8 @@ def get_classify():
         model = tf.keras.models.load_model('mnist_model.h5')
         predictions = model.predict( test_image)
         predicted_label = np.argmax(predictions)
-        true_label = test_label
         
-        return jsonify({"true label": class_names[true_label], "label predicted": class_names[predicted_label]})
+        return jsonify({"true label": class_names[test_label], "label predicted": class_names[predicted_label]})
     else :
         return render_template("home.html")
 
